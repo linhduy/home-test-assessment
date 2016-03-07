@@ -33,5 +33,9 @@ module.exports.policies = {
     'info': 'sessionAuth',
     'update': 'sessionAuth',
     'delete': 'sessionAuth'
+  },
+
+  'AuthController': {
+    'logout': 'sessionAuth'
   }
 };

@@ -7,12 +7,12 @@ exports.list = function(done){
 
 exports.info = function(userId, done){
   User.findOneById(userId, function(err, user){
-    if(err) return done(err);
+    if(err || !user) return done("user is not existed");
     return done(null, user);
   });
 }
 
-exports.register = function(params, done){
+exports.create = function(params, done){
   if(!params.name) return done("Missing param name");
   if(!params.password) return done("Missing param password");
   if(!params.email) return done("Missing param email");

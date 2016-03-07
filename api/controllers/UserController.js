@@ -1,4 +1,3 @@
-
 module.exports = {
   list: function(req, res){
     UserService.list(function(err, result){
@@ -18,7 +17,7 @@ module.exports = {
   register: function(req, res){
     params = req.allParams();
     params.type = User.USER_TYPE.REGULAR
-    UserService.register(params, function(err, result){
+    UserService.create(params, function(err, result){
       if(err) return res.badRequest(err);
       return res.ok(result);
     });

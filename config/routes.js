@@ -41,6 +41,7 @@ module.exports.routes = {
 'POST /user': 'UserController.register',
 'PUT /user/:id': 'UserController.update',
 'DELETE /user/:id': 'UserController.delete',
-'POST /user/login': 'AuthController.login'
+'POST /user/login': 'AuthController.login',
+'POST /user/logout': 'AuthController.logout'
 
 };

@@ -52,12 +52,12 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  host: 'localhost',
-  port: 6379,
-  ttl: 60,
-  db: 0,
-  pass: "",
-  prefix: 'sess:'
+  // host: 'localhost',
+  // port: 6379,
+  // ttl: 60,
+  // db: 0,
+  // pass: "",
+  // prefix: 'sess:'
 
 
   /***************************************************************************
@@ -67,7 +67,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'mongo',
+  adapter: 'connect-mongo',
   // host: 'localhost',
   // port: 27017,
   // db: 'sails',
@@ -81,7 +81,11 @@ module.exports.session = {
   * 'mongodb://user:pass@host:port/database/collection',                     *
   *                                                                          *
   ***************************************************************************/
-
+  url: 'mongodb://admin:admin@localhost:27017/home_test',
+  collection: 'sessions',
+  auto_reconnect: false,
+  ssl: false,
+  stringify: true
   // username: '',
   // password: '',
   // auto_reconnect: false,

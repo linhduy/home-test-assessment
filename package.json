@@ -7,7 +7,7 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "connect": "^3.4.1",
-    "connect-redis": "3.0.2",
+    "connect-mongo": "0.8.2",
     "ejs": "~0.8.4",
     "grunt": "^0.4.2",
     "grunt-cli": "^0.1.13",
