@@ -5,6 +5,8 @@ module.exports = {
 
     AuthService.authenticate(email, password, function(err, result){
       if(err) return res.badRequest(err);
+
+      req.session.authenticated = true;
       return res.ok(result);
     });
   }
