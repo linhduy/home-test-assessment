@@ -21,5 +21,6 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
-  initSeedDataOnStart: true
+  initSeedDataOnStart: true,
+  smtpTransport: {}
 };

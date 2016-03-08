@@ -17,7 +17,7 @@ exports.create = function(params, done){
   if(!params.password) return done("Missing param password");
   if(!params.email) return done("Missing param email");
   if(!params.type) return done("Missing param type");
-  if(!params.active) return done("Missing param active");
+  if(params.active == null || params.active == 'undefinded') return done("Missing param active");
 
   cond = {
     '$or': [
