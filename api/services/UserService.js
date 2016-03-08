@@ -17,6 +17,7 @@ exports.create = function(params, done){
   if(!params.password) return done("Missing param password");
   if(!params.email) return done("Missing param email");
   if(!params.type) return done("Missing param type");
+  if(!params.active) return done("Missing param active");
 
   cond = {
     '$or': [
@@ -33,7 +34,7 @@ exports.create = function(params, done){
       email: params.email,
       password: params.password,
       type: params.type,
-      active: false
+      active: params.active,
     }
     User.create(data, function(err, user){
       if(err) return done(err);
@@ -44,11 +45,12 @@ exports.create = function(params, done){
 
 exports.update = function(params, done){
   dataUpdate = {}
+  if(!params.userId) return done("Missing params userId");
   if(params.name) dataUpdate.name = params.name;
   if(params.password) dataUpdate.password = params.password;
   if(params.email) dataUpdate.email = params.email;
 
-  cond = {id: params.id}
+  cond = {id: params.userId}
 
   User.findOne(cond, function(err, user){
     if(err) return done(err);

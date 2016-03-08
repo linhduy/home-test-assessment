@@ -36,12 +36,20 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-'GET /user': 'UserController.list',
-'GET /user/:id': 'UserController.info',
-'POST /user': 'UserController.register',
-'PUT /user/:id': 'UserController.update',
-'DELETE /user/:id': 'UserController.delete',
 'POST /user/login': 'AuthController.login',
-'POST /user/logout': 'AuthController.logout'
+'POST /user/logout': 'AuthController.logout',
+
+//Regular user route
+'GET /user/:id': 'UserController.info',
+'POST /user/register': 'UserController.register',
+'PUT /user': 'UserController.update',
+// 'PUT /user/:email/:secretkey': 'AdminController.approval',
+
+
+//Admin user route
+'GET /user': 'AdminController.list',
+'PUT /user/:id': 'AdminController.update',
+'DELETE /user/:id': 'AdminController.delete',
+'PUT /user/approval/:id': 'AdminController.approval'
 
 };

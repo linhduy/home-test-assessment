@@ -54,5 +54,26 @@ module.exports = {
         }
       });
     });
+  },
+
+  beforeUpdate: function(user, cb) {
+    console.log("user.password");
+    console.log(user.password);
+    if(!user.password) {
+      cb(null, user);
+    }
+    else {
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+          if (err) {
+            console.log(err);
+            cb(err);
+          }else{
+            user.password = hash;
+            cb(null, user);
+          }
+        });
+      });
+    }
   }
 }

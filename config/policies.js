@@ -29,10 +29,12 @@ module.exports.policies = {
   // '*': true,
 
   'UserController': {
-    'list': 'sessionAuth',
-    'info': 'sessionAuth',
-    'update': 'sessionAuth',
-    'delete': 'sessionAuth'
+    'info': ['sessionAuth', 'isApprove'],
+    'update': ['sessionAuth', 'isApprove']
+  },
+
+  'AdminController': {
+    '*': ['sessionAuth', 'isAdmin']
   },
 
   'AuthController': {
