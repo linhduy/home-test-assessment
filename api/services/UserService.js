@@ -35,6 +35,7 @@ exports.create = function(params, done){
       password: params.password,
       type: params.type,
       active: params.active,
+      activeCode: params.activeCode || null
     }
     User.create(data, function(err, user){
       if(err) return done(err);

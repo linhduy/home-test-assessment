@@ -33,10 +33,14 @@ module.exports = {
       defaultsTo: false,
       required: true
     },
+    activeCode: {
+      type: 'string',
+    },
 
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
+      delete obj.activeCode;
       delete obj.type;
       return obj
     }
@@ -57,8 +61,6 @@ module.exports = {
   },
 
   beforeUpdate: function(user, cb) {
-    console.log("user.password");
-    console.log(user.password);
     if(!user.password) {
       cb(null, user);
     }

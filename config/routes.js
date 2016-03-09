@@ -43,7 +43,7 @@ module.exports.routes = {
 'GET /user/:id': 'UserController.info',
 'POST /user/register': 'UserController.register',
 'PUT /user': 'UserController.update',
-'GET /user/verify/:email/:secretkey': 'UserController.verifyEmail',
+'GET /user/verify/:email/:verifytoken': 'UserController.verifyEmail',
 
 
 //Admin user route

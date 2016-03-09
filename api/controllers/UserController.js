@@ -1,3 +1,5 @@
+var uuid = require('node-uuid');
+
 module.exports = {
   info: function(req, res){
     userId = req.param('id');
@@ -8,18 +10,19 @@ module.exports = {
   },
 
   register: function(req, res){
+    var verifyToken = uuid.v4();
     params = req.allParams();
     params.type = User.USER_TYPE.REGULAR
     params.active = false;
+    params.activeCode = verifyToken;
     UserService.create(params, function(err, newUser){
       if(err) return res.badRequest(err);
 
-      AuthService.requestVerifyEmail(newUser, 'abcdf', function(err, result){
-        if(err) console.log(err);
-
-        return res.ok(newUser);
+      AuthService.requestVerifyEmail(newUser, verifyToken, function(err, result){
+        if(err) sails.log.error(err);
       });
 
+      return res.ok(newUser);
     });
   },
 
@@ -34,8 +37,8 @@ module.exports = {
 
   verifyEmail: function(req, res){
     email = req.param('email');
-    secretkey = req.param('secretkey');
-    AuthService.approveByEmail(email, secretkey, function(err, result){
+    verifyToken = req.param('verifytoken');
+    AuthService.approveByEmail(email, verifyToken, function(err, result){
       if(err) return res.badRequest(err);
 
       return res.ok("Bạn đã verify email thành công! Vui lòng đăng nhập");

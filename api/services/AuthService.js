@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt')
 
 exports.authenticate = function(email, password, done){
   if(!email || !password) return done("Missing email or password");
@@ -42,7 +42,7 @@ exports.approveByAdmin = function(userId, done){
 exports.approveByEmail = function(email, secretKey, done){
   User.findOneByEmail(email, function(err, user){
     if(err || !user) return done("User is not existed");
-
+    if(!user.activeCode || user.activeCode != secretKey) return done("approve failed");
     User.update({email: email}, {active: true}, function(err, result){
       if(err || !result) return done("approve failed");
       return done(null, user);
