@@ -27,4 +27,10 @@ create dbuser: admin/admin
 $ sails lift
 ```
 
+
+## Test
+
+* Use postman to test
+ex: http://localhost:1337/user/login
+
 a [Sails](http://sailsjs.org) application
