@@ -16,9 +16,15 @@ go to source and type
 $ sudo npm install
 ```
 
-### Mongodb config &nbsp;
+## Mongodb config &nbsp;
 create db: home_test
 
 create dbuser: admin/admin
+
+## Run
+
+```
+$ sails lift
+```
 
 a [Sails](http://sailsjs.org) application
