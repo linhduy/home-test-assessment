@@ -50,6 +50,7 @@ module.exports.routes = {
 'GET /user': 'AdminController.list',
 'PUT /user/:id': 'AdminController.update',
 'DELETE /user/:id': 'AdminController.delete',
-'PUT /user/approval/:id': 'AdminController.approval'
+'PUT /user/approval/:id': 'AdminController.approval',
+'GET /user/export/csv': 'AdminController.exportUserToCSV'
 
 };

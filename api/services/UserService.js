@@ -1,3 +1,4 @@
+var fs = require('fs');
 exports.list = function(done){
   User.find(function(err, user){
     if(err) return done(err);
@@ -74,5 +75,29 @@ exports.delete = function(userId, done){
       if(err) return done(err);
       return done(null, user);
     });
+  });
+}
+
+exports.exportToCSV = function(done){
+  var process = require('child_process');
+
+  var limit = 1, count = 0, skip = 0;
+
+  var db = 'home_test';
+  var collection = 'user';
+  var type = 'csv';
+
+  User.count({}, function(err, userQuantity){
+    do{
+      cmd = 'mongoexport --db ' + db + ' --collection ' + collection + ' --limit ' + limit + ' --skip ' + skip + ' --type=' + type + ' --fieldFile userExportFields.txt --out user' + count + '.csv';
+      process.exec(cmd,function (err,stdout,stderr) {
+        if (err) sails.log.error(stderr);
+      });
+      count = count + 1;
+      skip = limit * count;
+    }
+    while(skip < userQuantity);
+
+    return done(null, true);
   });
 }

@@ -1,0 +1,7 @@
+_id
+name
+email
+type
+active
+activeCode
+createdAt

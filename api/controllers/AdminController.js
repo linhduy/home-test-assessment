@@ -31,7 +31,13 @@ module.exports = {
     });
   },
 
-  exportToPDF: function(req, res){},
+  exportUserToCSV: function(req, res){
+    UserService.exportToCSV(function(err, csv){
+      if(err) return res.badRequest(err);
+      return res.ok("exports user successfull");
+    });
+  },
 
-  exportToCSV: function(req, res){},
+  exportUserToPDF: function(req, res){}
+
 }

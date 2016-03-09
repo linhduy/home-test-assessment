@@ -8,12 +8,8 @@
  *
  */
 module.exports = function(req, res, next) {
-  console.log("req.session");
-  console.log(req.session);
   if (req.session.authenticated) {
     return next();
   }
-
-  sails.log.info("session invalid");
   return res.forbidden('You are not permitted to perform this action.');
 };

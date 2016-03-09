@@ -42,6 +42,14 @@ module.exports = {
       delete obj.password;
       delete obj.activeCode;
       delete obj.type;
+      delete obj.createdAt;
+      delete obj.updatedAt;
+      return obj
+    },
+
+    toExportCSVJSON: function(){
+      var obj = this.toObject();
+      delete obj.password;
       return obj
     }
   },
@@ -50,7 +58,6 @@ module.exports = {
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(user.password, salt, function(err, hash) {
         if (err) {
-          console.log(err);
           cb(err);
         }else{
           user.password = hash;
@@ -68,7 +75,6 @@ module.exports = {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(user.password, salt, function(err, hash) {
           if (err) {
-            console.log(err);
             cb(err);
           }else{
             user.password = hash;
