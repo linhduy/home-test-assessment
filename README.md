@@ -1,4 +1,9 @@
 # home_test
+## Clone source &nbsp;
+```
+$ git clone https://github.com/linhduy/home-test-assessment.git
+```
+
 ## Installation &nbsp;
 ```
 $ sudo npm install sails -g
