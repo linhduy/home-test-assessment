@@ -6,8 +6,6 @@ var createAdminUser = function(dataCreateUserAdmin){
 };
 
 exports.execute = function(cb){
-  sails.log.info('GAME CONFIGURATION SEED EXECUTING...........................');
-
   var dataCreateUserAdmin = {
     name: "admin",
     passchaword: "admin",
