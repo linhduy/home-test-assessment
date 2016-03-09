@@ -1,0 +1,47 @@
+* Thông tin project:
+- Ngôn ngữ: javascript.
+- Nền tảng: nodejs.
+- Framework: sails.js.
+
+* Ưu điểm của sails.
+- Sails.js là một framework khá mạnh và được sử dụng nhiều bởi cộng đồng nodejs.
+- Đã tích hợp sẵn ORM giúp kết nối và quản lý database tốt hơn.
+- Đã xây dựng sẵn mô hình MVC model và restful API.
+
+* Cấu trúc:
+route: config.routes.js.
+model: api/models.
+controller: api/controllers.
+service: api/services.
+policies: config/policies.js và api/policies.
+data: api/data.
+
+* Resful API:
+- login: /user/login , POST.
+- logout: /user/logout , POST.
+- regular user: 
+ + info: /user/:id , GET
+ + register: /user/register , POST
+ + update: /user/update , PUT
+ + verify email: /user/verify/:email/:verifytoken , GET
+- admin user:
+ + info: /user/:id , GET
+ + list user: /user , GET
+ + update user: user/:id , PUT
+ + approve: /user/approval/:id , PUT
+ + export user ra file .csv: /user/export/csv , GET
+
+* Xử lý:
+- register: tạo user và generate activeCode cho user và gửi email cho tài khoản đăng ký gồm link verify kèm verifyToken.
+- verify: khi nhận request sẽ kiểm tra email và verifyToken với activeCode, nếu đúng sẽ update field user active = true.
+- login: kiểm tra email, password và active.
+- sử dụng session.
+- admin acount: khi start app sẽ kiểm tra account admin, nếu chưa có sẽ generate.
+- export user data dạng csv: 
+ + Sử dụng lệnh mongoexport của mongodb. Chia nhỏ các file export tùy theo số lượng user hiện có. limit hiện tại là 10000 user/file. lưu theo cấu trúc user[số thứ tự].csv.
+ + thay vì gọi lệnh export tất cả user hiện có thì sẽ gọi nhiều lần với limit=10000 user, Như vậy sẽ giảm lượng xử lý nhiều user một lúc.
+
+* Chưa hoàn thành:
+ + resful API export user ra file .PDF.
+ + Chưa xử lý verify email khi user thay đổi địa chỉ email.
+

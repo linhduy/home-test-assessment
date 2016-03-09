@@ -42,7 +42,7 @@ module.exports.routes = {
 //Regular user route
 'GET /user/:id': 'UserController.info',
 'POST /user/register': 'UserController.register',
-'PUT /user': 'UserController.update',
+'PUT /user/update': 'UserController.update',
 'GET /user/verify/:email/:verifytoken': 'UserController.verifyEmail',
 
 

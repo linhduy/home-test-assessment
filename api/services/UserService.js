@@ -1,4 +1,5 @@
 var fs = require('fs');
+
 exports.list = function(done){
   User.find(function(err, user){
     if(err) return done(err);
@@ -13,12 +14,24 @@ exports.info = function(userId, done){
   });
 }
 
+check_email = function(val){
+  if(!val.match(/\S+@\S+\.\S+/)){
+    return false;
+  }
+  if(val.indexOf(' ')!=-1 || val.indexOf('..')!=-1){
+    return false;
+  }
+  return true;
+}
+
 exports.create = function(params, done){
   if(!params.name) return done("Missing param name");
   if(!params.password) return done("Missing param password");
   if(!params.email) return done("Missing param email");
   if(!params.type) return done("Missing param type");
   if(params.active == null || params.active == 'undefinded') return done("Missing param active");
+
+  if(!check_email(params.email)) return done("Email is not valid");
 
   cond = {
     '$or': [
@@ -81,7 +94,7 @@ exports.delete = function(userId, done){
 exports.exportToCSV = function(done){
   var process = require('child_process');
 
-  var limit = 1, count = 0, skip = 0;
+  var limit = 10000, count = 0, skip = 0;
 
   var db = 'home_test';
   var collection = 'user';
