@@ -1,14 +1,14 @@
 # home_test
 ## Installation &nbsp;
-* sails.js
+
 $ sudo npm install sails -g
 ```
-## Setup &nbsp;
+## Setup
 
 go to source and type
 $ sudo npm install
 ```
-### Mongodb config
+### Mongodb config &nbsp;
 create db: home_test
 create dbuser: admin/admin
 
